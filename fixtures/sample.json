@@ -1,0 +1,21 @@
+{
+  "clock": 0,
+  "tasks": [
+    {
+      "id": "history-1",
+      "provider": "p1",
+      "account": "a",
+      "priority": 0,
+      "cost": 2,
+      "deadline": 100
+    },
+    {
+      "id": "live-1",
+      "provider": "p2",
+      "account": "b",
+      "priority": 2,
+      "cost": 1,
+      "deadline": 20
+    }
+  ]
+}

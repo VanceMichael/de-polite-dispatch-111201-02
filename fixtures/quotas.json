@@ -1,0 +1,40 @@
+{
+  "global_concurrency": 3,
+  "aliases": {
+    "api.one.example": "p1",
+    "download.one.example": "p1"
+  },
+  "provider_limits": {
+    "p1": 2,
+    "p2": 2
+  },
+  "account_buckets": {
+    "p1:a": {
+      "capacity": 4,
+      "refill_per_second": 1
+    }
+  },
+  "events": [
+    {
+      "time": 0,
+      "action": "claim",
+      "worker": "w1"
+    },
+    {
+      "time": 1,
+      "action": "429",
+      "bucket": "p1:a",
+      "retry_after": 5
+    },
+    {
+      "time": 3,
+      "action": "worker_exit",
+      "worker": "w1"
+    },
+    {
+      "time": 8,
+      "action": "stale_complete",
+      "worker": "w1"
+    }
+  ]
+}
