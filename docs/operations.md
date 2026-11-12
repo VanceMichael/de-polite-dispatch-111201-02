@@ -6,3 +6,6 @@
 本地响应服务支持状态码、响应头、文本或 base64 字节正文；未配置路径返回未找到。
 每条路径的脚本独立推进，最后一个响应会重复；可借请求记录核对调用顺序。
 数据文件的路径均相对项目根目录，修改工作目录前请确认输入和数据库参数。
+派发演示 `python3 -m collector dispatch` 回放 fixtures/quotas.json 的共享预算与调度事件，
+全程本地手动时钟，不访问网络；输出每步运行记录、队列待派原因和配额指标，可重复执行结果一致。
+事件动作支持 submit/claim/send/execute/429/worker_exit/stale_complete/reap，可按同样格式扩展。

@@ -10,11 +10,16 @@ from .transport import Client, replay_server
 
 def main():
     parser = argparse.ArgumentParser(description='本地采集与凭据查看')
-    parser.add_argument('command', choices=['demo', 'import', 'show', 'serve'])
+    parser.add_argument('command', choices=['demo', 'import', 'show', 'serve', 'dispatch'])
     parser.add_argument('--input', default='fixtures/sample.json')
+    parser.add_argument('--quotas', default='fixtures/quotas.json')
     parser.add_argument('--db', default='var/records.sqlite3')
     parser.add_argument('--port', type=int, default=8080)
     arguments = parser.parse_args()
+    if arguments.command == 'dispatch':
+        from .simulate import run_quotas_demo
+        print(json.dumps(run_quotas_demo(arguments.quotas), ensure_ascii=False, indent=2))
+        return
     if arguments.command == 'serve':
         from .api import serve
         serve(arguments.db, arguments.port)
